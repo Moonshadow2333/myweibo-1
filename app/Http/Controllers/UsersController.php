@@ -45,12 +45,15 @@ class UsersController extends Controller
     public function sendEmailConfirmationTo($user){
         $view = 'emails.confirm';
         $data = compact('user');
-        $from = '1815265375@qq.com';
-        $name = 'MoonShadow';
+        // $from = '1815265375@qq.com';
+        // $name = 'MoonShadow';
         $to = $user->email;
         $subject = '感谢注册Weibo 应用！ 请确认您的邮件。';
-        Mail::send($view,$data,function($message) use ($from,$name,$to,$subject){
-            $message->from($from,$name)->to($to)->subject($subject);
+        // Mail::send($view,$data,function($message) use ($from,$name,$to,$subject){
+        //     $message->from($from,$name)->to($to)->subject($subject);
+        // });
+        Mail::send($view,$data,function($message) use ($to,$subject){
+            $message->to($to)->subject($subject);
         });
     }
     public function edit(User $user){
